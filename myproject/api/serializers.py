@@ -25,10 +25,10 @@ class EmployeeSerializer(serializers.ModelSerializer):
         if not value:
             raise serializers.ValidationError("The name field cannot be empty.")
         return value
+        
     def validate_id(self, value):
     # Access the HTTP method
         request_method = self.context['request'].method
-
         if request_method in ['PUT', 'PATCH']:
             # Handle validation for updates (exclude the current object's ID)
             current_employee_id = self.instance.id  # Current instance being updated
